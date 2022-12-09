@@ -15,3 +15,10 @@ app.use(routes);
 sequelize.sync().then(() => {app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`)})
 });
+
+//Add model files
+const Category = require('./models/Category');
+const Index = require('./models/index')
+const Product = require('./models/Product')
+const ProductTag = require('./models/ProductTag')
+const Tag = require('./models/Tag')
