@@ -6,17 +6,31 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // get all products
 router.get('/', (req, res) => {
   // find all products
+  Product.findAll()
   // be sure to include its associated Category and Tag data
+  .then((productData) => {
+    res.json(productData);
+  });
 });
 
 // get one product
 router.get('/:id', (req, res) => {
   // find a single product by its `id`
+  Product.findByPk(req.params.id).then((productData) => {
+    res.json(productData)
+  })
   // be sure to include its associated Category and Tag data
 });
 
 // create new product
 router.post('/', (req, res) => {
+  Product.create(req.body)
+  .then((newProduct) => {
+    res.json(newProduct);
+  })
+  .catch((err) => {
+    res.json(err);
+  });
   /* req.body should look like this...
     {
       product_name: "Basketball",
